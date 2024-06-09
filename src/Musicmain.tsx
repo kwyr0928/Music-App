@@ -19,7 +19,8 @@ const Musicmain = ({ song }: MusicProps) => {
             setElapsedTime(Math.floor((Date.now() - startTime) / 1000));
         }, 1000);
         return () => clearInterval(interval);
-    }, [startTime, song]);
+    }, [startTime]); // startTimeを依存配列に追加する
+    
 
     const handleEnd = () => {
         console.log(elapsedTime);
@@ -37,15 +38,17 @@ const Musicmain = ({ song }: MusicProps) => {
 
     useEffect(() => {
         const ws = new WebSocket('ws://localhost:8080');
+        ws.onopen = () => {
+            console.log('WebSocket connection established');
+        };
         ws.onmessage = (event) => {
             setData(event.data);
-            if (song === "かえるのうた" && tone(event.data) === kaeru[numbers]) {
-                setNumbers((prevNumbers) => prevNumbers + 1);
-                console.log(numbers);
-            }
-            if (song === "キラキラ星" && tone(event.data) === kirakira[numbers]) {
-                setNumbers((prevNumbers) => prevNumbers + 1);
-                console.log(numbers);
+            if ((song === "かえるのうた" && tone(event.data) === kaeru[numbers]) ||
+                (song === "キラキラ星" && tone(event.data) === kirakira[numbers])) {
+                setNumbers((prevNumbers) => {
+                    console.log(prevNumbers + 1);
+                    return prevNumbers + 1;
+                });
             }
             if (numbers === 4) {
                 console.log(elapsedTime);
@@ -53,9 +56,10 @@ const Musicmain = ({ song }: MusicProps) => {
             }
         };
         return () => {
+            console.log('Closing WebSocket connection');
             ws.close();
         };
-    }, [numbers, startTime, navigate]);
+    }, [song, numbers, navigate]);
 
     return (
         <div className="flex flex-col items-center mt-10">
