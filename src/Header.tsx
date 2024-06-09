@@ -1,9 +1,10 @@
 function Header() {
-  
     return (
-    <div className="">
-        <h1>楽曲演奏</h1>
-    </div>
+      <div>
+        <div className="h-28 flex items-center justify-center bg-cyan-950">
+          <h1 className="text-4xl font-bold text-white">メロディチャレンジ</h1>
+        </div>
+      </div>
     );
   }
   
