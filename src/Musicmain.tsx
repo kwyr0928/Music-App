@@ -10,7 +10,7 @@ const Musicmain = ({ song }: MusicProps) => {
     const navigate = useNavigate();
     const [elapsedTime, setElapsedTime] = useState<number>(0);
     const [startTime, setStartTime] = useState<number>(Date.now());
-    const [numbers, setNumbers] = useState(0);
+    const [numbers, setNumbers] = useState(2);
 
     useEffect(() => {
         // コンポーネントがマウントされたときの時間を記録
@@ -34,6 +34,27 @@ const Musicmain = ({ song }: MusicProps) => {
 
     const tone = (data: number) => {
         return onkai[data];
+    }
+
+    const getColorClass = (toneValue: string) => {
+        switch (toneValue) {
+            case "ド":
+                return "text-red-500";
+            case "レ":
+                return "text-orange-500";
+            case "ミ":
+                return "text-yellow-500";
+            case "ファ":
+                return "text-green-500";
+            case "ソ":
+                return "text-blue-500";
+            case "ラ":
+                return "text-indigo-500";
+            case "シ":
+                return "text-purple-500";
+            default:
+                return "text-black";
+        }
     }
 
     useEffect(() => {
@@ -61,15 +82,20 @@ const Musicmain = ({ song }: MusicProps) => {
         };
     }, [song, numbers, navigate]);
 
+
+    const toneValue1 = tone(data);
+    const toneClass1 = getColorClass(toneValue1);
+    const toneValue2 = kaeru[numbers];
+    const toneClass2 = getColorClass(toneValue2);
+    
     return (
         <div className="flex flex-col items-center mt-10">
-            <h1 className="mb-4">演奏開始しました</h1>
-            <h2 className="mb-4">演奏曲：{song}</h2>
-            <h2 className="mb-4">次の音は {kaeru[numbers]}</h2>
-            <Button onClick={handleEnd} className="mb-4">演奏終了</Button>
-            <p className="mb-2">センサーからの受け取り値</p>
-            <p className="mb-2">{tone(data)}</p>
-            <p>経過時間: {elapsedTime} 秒</p>
+            <h2 className="mb-4 text-2xl">演奏曲：{song}</h2>
+            <h2 className="mb-4">次の音は <span className={`text-5xl ${toneClass2}`}>{kaeru[numbers]}</span></h2>
+            <Button size="lg" colorScheme="primary" onClick={handleEnd} className="mb-4">演奏中断</Button>
+            <p className="mb-2">センサーからの受け取り値 <span className={`text-5xl ${toneClass1}`}>{tone(data)}</span></p>
+            <p className="mb-2"></p>
+            <p>経過時間：<span className="text-3xl">{elapsedTime} </span> 秒</p>
         </div>
     );
 };

@@ -9,9 +9,9 @@ const Resultmain: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center mt-10">
-      <h1 className="text-3xl font-bold mb-4">結果ページ</h1>
-      <p className="text-xl mb-4">結果: {duration} 秒</p>
-      <Button className="mb-4">
+     
+      <p className="text-xl mb-4">記録：<span className="text-3xl text-red-500">{duration}</span> 秒</p>
+      <Button size="lg" colorScheme="primary" className="mb-4">
         <Link to="/">Topに戻る</Link>
       </Button>
     </div>
