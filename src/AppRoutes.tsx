@@ -6,7 +6,7 @@ import Top from "./Top";
 
 export const AppRoutes = () => {
     return (
-        <Routes >
+        <Routes>
             <Route path="/" element={<Top />} />
             <Route path="/music" element={<Music />} />
             <Route path="/result" element={<Result />} />
