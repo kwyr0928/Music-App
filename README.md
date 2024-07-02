@@ -1,30 +1,13 @@
-# React + TypeScript + Vite
+Arduinoと超音波センサーを用いた音程制御システム
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+2024年 6月 - 2024年 6月
 
-Currently, two official plugins are available:
+関わった人数：1人
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+使用技術：Arduino,  Vite+React+TS, Node.js, TailwindCSS, Yamada UI
 
-## Expanding the ESLint configuration
+センサや機材：Base Shield V2, Grove - LCD RGB Backlight, Ultrasonic Ranger v2.0, Grove Chainable RGB LED v2.0, Grove-Speaker Plus
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+詳細：超音波センサーを用いることで手と機械の距離を測り、スピーカーから出る音を調節できる。手の動きでインタラクティブな演奏が可能で、音楽未経験の人でも気軽に音楽を楽しめるようゲーム要素を取り入れた。
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Googleスライド：https://docs.google.com/presentation/d/16yZ4EUOWzIBSMQ-lzyW_jZ7fbXZzCMnG/edit?usp=sharing&ouid=109962082748187501504&rtpof=true&sd=true
